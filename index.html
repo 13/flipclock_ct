@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/flipclock.css">
+    <script src="js/flipclock.min.js"></script>
+    <style>
+      .clock-wrapper {
+	      display:inline-block;
+	      width:auto;
+      }
+      .clock {
+	      text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="span12 text-center">
+	<div class="clock-wrapper ">
+	  <div class="clock" style="margin:1em;"></div>
+          <div class="message"></div>
+	</div>
+      </div>
+    </div>
+  <script type="text/javascript">
+  var now = new Date();
+  var datetime = new Date();
+
+  var ntime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 00);
+  var ctime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 30);
+  var fntime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 30);
+
+  if ((now.getTime()/1000) < (ntime.getTime()/1000)){
+    if ((now.getDay()) == 5){
+      var datetime = (fntime.getTime()/1000);
+    } else {
+      var datetime = (ntime.getTime()/1000);
+    }
+  }
+  if ((ntime.getTime()/1000) < (now.getTime()/1000) && (now.getTime()/1000) < (ctime.getTime()/1000)){
+    var datetime = (ctime.getTime()/1000);
+  }
+
+  var diff = (datetime) - (now.getTime()/1000);
+  var clock = $('.clock').FlipClock(diff,{
+      clockFace: 'HourlyCounter',
+      countdown: true
+  }); 
+
+  var date1 = new Date(2017, 2, 10);
+  var diff1 = (date1.getTime()/1000) - (now.getTime()/1000);
+  var clock1 = $('.clock1').FlipClock(diff1,{
+      clockFace: 'DailyCounter',
+      countdown: true
+  });  
+  </script>
+  </body>
+</html>
