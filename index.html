@@ -29,6 +29,56 @@
 	</div>
       </div>
     </div>
+    
+
+    <section id="webcams">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-box">
+			<a href="http://static.ras.bz.it/web/uploads/webcams/mut/cam1/current.jpg" target="_self">
+                            <img src="http://static.ras.bz.it/web/uploads/webcams/mut/cam1/current.jpg" alt="" class="img-responsive fa fa-4x fa-newspaper-o text-primary">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+		   	<a href="http://static.ras.bz.it/web/uploads/webcams/mut/cam2/current.jpg" target="_self">
+                            <img src="http://static.ras.bz.it/web/uploads/webcams/mut/cam2/current.jpg" alt="" class="img-responsive fa fa-4x fa-newspaper-o text-primary">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+			    <a href="http://static.ras.bz.it/web/uploads/webcams/mut/cam3/current.jpg" target="_self">
+                            <img src="http://static.ras.bz.it/web/uploads/webcams/mut/cam3/current.jpg" alt="" class="img-responsive fa fa-4x fa-newspaper-o text-primary">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+			<a href="http://static.trick17.it/lana.info/webcams/lana/current.jpg" target="_self">
+                            <img src="http://static.trick17.it/lana.info/webcams/lana/current.jpg" alt="" class="img-responsive fa fa-4x fa-newspaper-o text-primary">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+			<a href="https://web.dorf-tirol.it/webcam.jpg?id=2" target="_self">
+                            <img src="https://web.dorf-tirol.it/webcam.jpg?id=2" alt="" class="img-responsive fa fa-4x fa-newspaper-o text-primary">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <a href="http://static.trick17.it/lana.info/webcams/tscherms/tscherms.jpg" target="_self">
+                            <img src="http://static.trick17.it/lana.info/webcams/tscherms/tscherms.jpg" alt="" class="img-responsive fa fa-4x fa-newspaper-o text-primary">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
   <script type="text/javascript">
   var now = new Date();
   var datetime = new Date();
@@ -37,16 +87,19 @@
   var ctime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 30);
   var fntime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 30);
 
-  if ((now.getTime()/1000) < (ntime.getTime()/1000)){
-    if ((now.getDay()) == 5){
-      var datetime = (fntime.getTime()/1000);
-    } else {
+  if ((now.getDay()) == 5){
+    var datetime = (fntime.getTime()/1000);
+  } else {
+    if ((now.getTime()/1000) < (ntime.getTime()/1000)){
       var datetime = (ntime.getTime()/1000);
+    } else {
+      var datetime = (ctime.getTime()/1000);
     }
   }
-  if ((ntime.getTime()/1000) < (now.getTime()/1000) && (now.getTime()/1000) < (ctime.getTime()/1000)){
-    var datetime = (ctime.getTime()/1000);
-  }
+  //}
+  //if ((ntime.getTime()/1000) < (now.getTime()/1000) && (now.getTime()/1000) < (ctime.getTime()/1000)){
+  //  var datetime = (ctime.getTime()/1000);
+  //}
 
   var diff = (datetime) - (now.getTime()/1000);
   var clock = $('.clock').FlipClock(diff,{
