@@ -10,6 +10,7 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/flipclock.css">
     <script src="js/flipclock.min.js"></script>
+    <script src="js/moment-with-locales.js"></script>
     <style>
       .clock-wrapper {
 	      display:inline-block;
@@ -18,6 +19,7 @@
       .clock {
 	      text-align:center;
       }
+      .flip-clock-label{ display: none !important; }
     </style>
   </head>
   <body>
@@ -28,8 +30,10 @@
           <div class="message"></div>
 	</div>
       </div>
+      <div class="text-center">
+        <div id="time"></div>
+      </div>
     </div>
-    
 
     <section id="webcams">
         <div class="container">
@@ -80,9 +84,11 @@
         </div>
     </section>
   <script type="text/javascript">
+
   var now = new Date();
   var datetime = new Date();
 
+  // Vormittag, Nachmittag, Samstagvormittag
   var ntime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 00);
   var ctime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 17, 30);
   var fntime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 30);
@@ -96,23 +102,23 @@
       var datetime = (ctime.getTime()/1000);
     }
   }
-  //}
-  //if ((ntime.getTime()/1000) < (now.getTime()/1000) && (now.getTime()/1000) < (ctime.getTime()/1000)){
-  //  var datetime = (ctime.getTime()/1000);
-  //}
 
   var diff = (datetime) - (now.getTime()/1000);
+  if (diff < 0){
+    diff = 0;
+  }
   var clock = $('.clock').FlipClock(diff,{
       clockFace: 'HourlyCounter',
       countdown: true
   }); 
+ 
+  // Aktuelle Uhrzeit
+  var interval = setInterval(function() {
+    var momentNow = moment();
+    $('#time').html(momentNow.format('HH:mm:ss'));
+  }, 100);
 
-  var date1 = new Date(2017, 2, 10);
-  var diff1 = (date1.getTime()/1000) - (now.getTime()/1000);
-  var clock1 = $('.clock1').FlipClock(diff1,{
-      clockFace: 'DailyCounter',
-      countdown: true
-  });  
   </script>
   </body>
 </html>
+
