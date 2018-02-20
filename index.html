@@ -118,6 +118,13 @@
     $('#time').html(momentNow.format('HH:mm:ss'));
   }, 100);
 
+  // Update images
+  var img_interval = setInterval(function(){
+    $('.img-responsive').each(function(){
+      $(this).attr('src', $(this).attr('src') + '?' + Math.random());
+    });
+  },60000);
+
   </script>
   </body>
 </html>
