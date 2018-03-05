@@ -107,9 +107,16 @@
   if (diff < 0){
     diff = 0;
   }
+
   var clock = $('.clock').FlipClock(diff,{
       clockFace: 'HourlyCounter',
-      countdown: true
+      countdown: true,
+      callbacks: {
+        stop: function() {
+          clock.setTime(diff);
+          clock.start();
+        }
+      }   
   }); 
  
   // Aktuelle Uhrzeit
@@ -121,7 +128,15 @@
   // Update images
   var img_interval = setInterval(function(){
     $('.img-responsive').each(function(){
-      $(this).attr('src', $(this).attr('src') + '?' + Math.random());
+      var url = $(this).attr('src');
+      url = url.replace(/(\?|\&)t=[0-9\.]+/g, "");
+      var url_clean = url.split('?')[0];
+      var url_params = url.split('?')[1];
+      if (url_params == null){
+        $(this).attr('src', url_clean + '?t=' + Math.round((new Date()).getTime() / 1000));
+      } else {
+        $(this).attr('src', url_clean + '?' + url_params + '&t=' + Math.round((new Date()).getTime() / 1000));
+      }
     });
   },60000);
 
